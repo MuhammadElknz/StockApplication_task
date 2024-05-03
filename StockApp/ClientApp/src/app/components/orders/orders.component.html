@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-7 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex justify-content-between">
+            <span class="align-self-center">Orders List</span>
+            <button class="btn btn-primary" (click)="openModal()">
+              Create Order
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="no_orders" *ngIf="!orders || orders?.length == 0">
+            No orders yet
+          </p>
+          <table class="table" *ngIf="orders && orders?.length !== 0">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Person Name</th>
+                <th scope="col">actions</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{ order?.id }}</td>
+                <td>{{ order?.stock?.name }}</td>
+                <td>{{ order?.price }}</td>
+                <td>{{ order?.quantity }}</td>
+                <td>{{ order?.createdBy }}</td>
+                <td>
+                  <div>
+                    <button class="btn btn-icon" (click)="openEditModal(order)">
+                      <i class="far fa-edit"></i>d
+                    </button>
+                    <button
+                      class="btn btn-icon"
+                      (click)="deleteorder(order?.id)"
+                    >
+                      delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 col-12">
+      <stocks></stocks>
+    </div>
+  </div>
+</div>

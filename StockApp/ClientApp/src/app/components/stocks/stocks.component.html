@@ -1,0 +1,32 @@
+
+
+
+<div class="card">
+  <div class="card-header">
+    Stocks List
+  </div>
+  <div class="card-body"> 
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stock of stocks">
+              <th scope="row">{{stock.id}}</th>
+              <td>{{stock.name}}</td>
+              <td><h4 [@fadeInOut] class="badge bg-secondary">{{stock.price | number:'1.2-2'}}</h4></td>
+            </tr>
+          </tbody>
+        </table> 
+  </div>
+  <div class="card-footer">
+    <ng-container *ngIf="pagination">
+      <pagination [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"   [maxSize]="maxSize" (pageChanged)="pageChanged($event)"></pagination>
+    </ng-container>
+  </div>
+</div>
+
